@@ -2,6 +2,12 @@
 
 Each `## [version]` section becomes the release notes on GitHub.
 
+## [2.12.1] - 2026-10-20
+
+### Added
+- Product & Service Grid: Style > Content now has Border and Border Radius
+  options, like Style > Card.
+
 ## [2.12.0] - 2026-10-20
 
 ### Added

@@ -467,6 +467,18 @@ class BBEA_Card_Grid_Widget extends Widget_Base {
 			'selectors'  => [ '{{WRAPPER}} .bbcg-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
+		$this->add_group_control( Group_Control_Border::get_type(), [
+			'name'     => 'content_border',
+			'selector' => '{{WRAPPER}} .bbcg-content',
+		] );
+
+		$this->add_responsive_control( 'content_radius', [
+			'label'      => 'Border Radius',
+			'type'       => Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', '%', 'em' ],
+			'selectors'  => [ '{{WRAPPER}} .bbcg-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
+		] );
+
 		$this->add_control( 'title_heading', [
 			'label'     => 'Title',
 			'type'      => Controls_Manager::HEADING,

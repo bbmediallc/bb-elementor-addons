@@ -3,7 +3,7 @@
  * Plugin Name: B&B Media Elementor Add-Ons
  * Plugin URI: https://bandbmedia.com/
  * Description: Custom Elementor widgets by B&B Media: Hover Reveal List, Testimonial Slider, Section Intro, Gallery Slider, Logo Carousel, Photo Carousel, Team Grid, Product & Service Grid and Gravity Form.
- * Version: 2.12.0
+ * Version: 2.12.1
  * Author: B&B Media, LLC
  * Author URI: https://bandbmedia.com/
  * Requires at least: 6.5
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Must match the Version header above. scripts/build.sh refuses to build
 // if they differ.
-define( 'BBEA_VERSION', '2.12.0' );
+define( 'BBEA_VERSION', '2.12.1' );
 define( 'BBEA_FILE', __FILE__ );
 define( 'BBEA_BASENAME', plugin_basename( __FILE__ ) );
 define( 'BBEA_URL', plugin_dir_url( __FILE__ ) );
