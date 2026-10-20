@@ -3,23 +3,36 @@
  * Plugin Name: B&B Media Elementor Add-Ons
  * Plugin URI: https://bandbmedia.com/
  * Description: Custom Elementor widgets by B&B Media: Hover Reveal List, Testimonial Slider, Section Intro, Gallery Slider, Logo Carousel, Photo Carousel, Team Grid, Product & Service Grid and Gravity Form.
- * Version: 2.11.0
+ * Version: 2.12.0
  * Author: B&B Media, LLC
  * Author URI: https://bandbmedia.com/
+ * Requires at least: 6.5
+ * Tested up to: 7.1
+ * Requires PHP: 7.0
  * Requires Plugins: elementor
+ * Update URI: https://github.com/bbmediallc/bb-elementor-addons
  * Text Domain: bb-elementor-addons
  */
+
+// Never rename this file or the bb-elementor-addons folder: WordPress
+// identifies the plugin as "bb-elementor-addons/bb-elementor-addons.php",
+// and renaming either one would deactivate it on every site that updates.
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BBEA_VERSION', '2.11.0' );
+// Must match the Version header above. scripts/build.sh refuses to build
+// if they differ.
+define( 'BBEA_VERSION', '2.12.0' );
+define( 'BBEA_FILE', __FILE__ );
+define( 'BBEA_BASENAME', plugin_basename( __FILE__ ) );
 define( 'BBEA_URL', plugin_dir_url( __FILE__ ) );
 define( 'BBEA_PATH', plugin_dir_path( __FILE__ ) );
 
 require_once BBEA_PATH . 'includes/editor-tweaks.php';
 require_once BBEA_PATH . 'includes/admin-featured-image-column.php';
+require_once BBEA_PATH . 'includes/updater.php';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'font-awesome-7', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css', [], '7.0.0' );
