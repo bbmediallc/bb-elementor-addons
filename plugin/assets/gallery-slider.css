@@ -1,0 +1,82 @@
+.bbgs {
+	width: 100%;
+}
+
+.bbgs-main {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+.bbgs-main .bbgs-swiper,
+.bbgs-main .swiper-wrapper,
+.bbgs-main .bbgs-slide {
+	height: 100%;
+}
+
+.bbgs .bbgs-main .bbgs-main-img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+}
+
+.bbgs--lightbox-main .bbgs-slide {
+	cursor: zoom-in;
+}
+
+.bbgs-arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+}
+
+.bbgs-dots.swiper-pagination {
+	z-index: 2;
+}
+
+.bbgs-thumbs {
+	display: grid;
+	grid-template-rows: auto;
+	grid-auto-rows: 0;
+	row-gap: 0;
+	overflow: hidden;
+}
+
+.bbgs-thumbs--hidden {
+	display: none;
+}
+
+.bbgs-thumb {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.bbgs .bbgs-thumb .bbgs-thumb-img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+}
+
+.bbgs-more {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	text-align: center;
+}
+
+.bbgs-more-count,
+.bbgs-more-label {
+	display: block;
+	line-height: 1;
+}

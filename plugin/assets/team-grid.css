@@ -1,0 +1,29 @@
+.bbtg {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.bbtg-member {
+	min-width: 0;
+}
+
+.bbtg-photo {
+	overflow: hidden;
+}
+
+.bbtg .bbtg-photo .bbtg-img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+}
+
+.bbtg .bbtg-name,
+.bbtg .bbtg-title {
+	margin-top: 0;
+}
+
+.bbtg .bbtg-title {
+	margin-bottom: 0;
+}

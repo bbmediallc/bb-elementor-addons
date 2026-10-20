@@ -1,0 +1,116 @@
+.bblc {
+	position: relative;
+	width: 100%;
+}
+
+.bblc-viewport {
+	overflow: hidden;
+}
+
+.bblc-track {
+	display: flex;
+	width: max-content;
+	animation-name: bblc-marquee;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-play-state: paused;
+}
+
+.bblc--ready .bblc-track {
+	animation-play-state: running;
+}
+
+.bblc--pause .bblc-viewport:hover .bblc-track {
+	animation-play-state: paused;
+}
+
+.bblc-group {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.bblc-cell {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.bblc-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	max-width: 100%;
+}
+
+.bblc .bblc-item .bblc-img {
+	display: block;
+	width: auto;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.bblc-fade-yes .bblc--marquee::before,
+.bblc-fade-yes .bblc--marquee::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
+	pointer-events: none;
+}
+
+.bblc-fade-yes .bblc--marquee::before {
+	left: 0;
+}
+
+.bblc-fade-yes .bblc--marquee::after {
+	right: 0;
+}
+
+.bblc-slider-wrap {
+	position: relative;
+}
+
+.bblc-swiper .swiper-wrapper {
+	align-items: center;
+}
+
+.bblc-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+}
+
+.bblc--auto .bblc-slide {
+	width: auto;
+}
+
+.bblc-arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+}
+
+.bblc-dots.swiper-pagination {
+	position: static;
+}
+
+@keyframes bblc-marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bblc-track {
+		animation-play-state: paused !important;
+	}
+}

@@ -1,0 +1,79 @@
+.bbsi {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	text-align: left;
+	width: 100%;
+}
+
+.bbsi-eyebrow {
+	margin-bottom: 24px;
+	color: #262F29;
+}
+
+.bbsi-eyebrow-dot {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 24px;
+	width: 8px;
+	height: 8px;
+	border-radius: 0;
+	background-color: #93BF3E;
+}
+
+.bbsi .bbsi-eyebrow-text {
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: 14px;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.bbsi .bbsi-heading {
+	margin: 0 0 48px;
+	padding: 0;
+	max-width: 100%;
+}
+
+.bbsi-text {
+	margin-bottom: 32px;
+	max-width: 720px;
+}
+
+.bbsi-text > :first-child {
+	margin-top: 0;
+}
+
+.bbsi-text > :last-child {
+	margin-bottom: 0;
+}
+
+.bbsi-buttons {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.bbsi .bbsi-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+}
+
+.bbsi .bbsi-btn .elementor-button-content-wrapper {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.bbsi .bbsi-btn .elementor-button-icon svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}

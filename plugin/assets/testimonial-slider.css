@@ -1,0 +1,259 @@
+.bbts {
+	position: relative;
+	width: 100%;
+}
+
+.bbts-stage {
+	display: grid;
+	touch-action: pan-y;
+}
+
+.bbts-slide {
+	grid-area: 1 / 1;
+	visibility: hidden;
+	pointer-events: none;
+	transition: visibility 0s linear 500ms;
+}
+
+.bbts-slide.is-active {
+	z-index: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition-delay: 0s;
+}
+
+.bbts-card {
+	display: flex;
+	flex-direction: var(--bbts-dir, row);
+	gap: var(--bbts-gap, 80px);
+	min-height: var(--bbts-card-minh, 680px);
+}
+
+.bbts-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex: 0 0 var(--bbts-content-basis, 42%);
+	gap: var(--bbts-content-gap, 64px);
+	width: 100%;
+	max-width: var(--bbts-content-max, 500px);
+	min-width: 0;
+	opacity: 0;
+	transform: translateX(32px);
+	transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.bbts--has-nav .bbts-content {
+	padding-top: var(--bbts-content-pt, 0px);
+}
+
+.bbts-slide.is-active .bbts-content {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.bbts-slide.is-leaving .bbts-content {
+	transform: translateX(-32px);
+}
+
+.bbts-eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 32px;
+	color: #262F29;
+}
+
+.bbts-eyebrow-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 0;
+	background-color: #93BF3E;
+	flex-shrink: 0;
+}
+
+.bbts .bbts-eyebrow-text {
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: 14px;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.bbts-quote {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	color: #262F29;
+	font-style: normal;
+}
+
+.bbts-quote--long .bbts-quote-text {
+	display: block;
+	font-size: 65%;
+}
+
+.bbts-author {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding-right: var(--bbts-author-pr, 140px);
+}
+
+.bbts-name {
+	font-weight: 600;
+	color: #262F29;
+}
+
+.bbts-meta {
+	color: #262F29A3;
+}
+
+.bbts-media {
+	position: relative;
+	flex: 1 1 auto;
+	width: 100%;
+	min-width: 0;
+	min-height: var(--bbts-h, 680px);
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity 300ms ease;
+}
+
+.bbts-slide.is-active .bbts-media {
+	opacity: 1;
+}
+
+.bbts-img {
+	position: absolute;
+	inset: 0;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	object-fit: cover;
+	transform: scale(1.08);
+	transition: transform 1200ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.bbts-slide.is-active .bbts-img {
+	transform: scale(1);
+}
+
+.bbts-tiles {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	pointer-events: none;
+}
+
+.bbts-tile {
+	display: block;
+	flex: 1 1 0;
+	margin-bottom: -1px;
+	background-color: #D2D2D2;
+	transform: scaleX(0);
+	transform-origin: right center;
+	transition: transform 700ms cubic-bezier(.65, 0, .35, 1);
+}
+
+.bbts-slide.is-covering .bbts-tile {
+	transform: scaleX(1);
+	transition: none;
+}
+
+.bbts-slide.is-covering .bbts-img {
+	transform: scale(1.08);
+	transition: none;
+}
+
+.bbts-nav {
+	position: var(--bbts-navx-pos, var(--bbts-nav-pos, absolute));
+	top: var(--bbts-navx-top, auto);
+	left: var(--bbts-nav-left, 0);
+	right: var(--bbts-nav-right, auto);
+	bottom: var(--bbts-navx-bottom, 0px);
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 16px;
+	width: var(--bbts-nav-w, 42%);
+	max-width: var(--bbts-nav-cap, 500px);
+	margin-top: var(--bbts-navx-mt, var(--bbts-nav-mt, 0px));
+	pointer-events: none;
+}
+
+.bbts-nav > * {
+	pointer-events: auto;
+}
+
+.bbts-counter {
+	margin-right: auto;
+	color: #262F29;
+	font-variant-numeric: tabular-nums;
+}
+
+.bbts-arrows {
+	display: flex;
+	gap: 8px;
+}
+
+.bbts-arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	border: 1px solid #262F2952;
+	border-radius: 0;
+	background-color: transparent;
+	color: #262F29;
+	cursor: pointer;
+	transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+
+.bbts-arrow:hover,
+.bbts-arrow:focus-visible {
+	background-color: #93BF3E;
+	border-color: #93BF3E;
+}
+
+.bbts-arrow:focus-visible {
+	outline: 2px solid #262F29;
+	outline-offset: 2px;
+}
+
+.bbts .bbts-arrow {
+	padding: 0;
+}
+
+.bbts-arrow svg {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	pointer-events: none;
+}
+
+.bbts-prev svg {
+	transform: rotate(180deg);
+}
+
+.bbts-arrow:disabled {
+	opacity: 0.32;
+	cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bbts-content,
+	.bbts-media,
+	.bbts-img,
+	.bbts-tile {
+		transition: none !important;
+	}
+}
