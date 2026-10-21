@@ -100,8 +100,11 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 			'min'         => 1,
 			'max'         => 12,
 			'step'        => 1,
-			'description' => 'Leave empty to fit as many as there is room for.',
-			'selectors'   => [ '{{WRAPPER}} .bbsg-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr));' ],
+			'default'        => 4,
+			'tablet_default' => 4,
+			'mobile_default' => 1,
+			'description'    => 'Leave empty to fit as many as there is room for.',
+			'selectors'      => [ '{{WRAPPER}} .bbsg-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr));' ],
 		] );
 
 		$this->add_responsive_control( 'align', [
@@ -116,9 +119,12 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 		] );
 
 		$this->add_responsive_control( 'item_padding', [
-			'label'      => 'Stat Padding',
-			'type'       => Controls_Manager::DIMENSIONS,
-			'size_units' => [ 'px', 'em', 'rem', '%' ],
+			'label'          => 'Stat Padding',
+			'type'           => Controls_Manager::DIMENSIONS,
+			'size_units'     => [ 'px', 'em', 'rem', '%' ],
+			'default'        => [ 'top' => '32', 'right' => '40', 'bottom' => '32', 'left' => '40', 'unit' => 'px', 'isLinked' => false ],
+			'tablet_default' => [ 'top' => '24', 'right' => '24', 'bottom' => '24', 'left' => '24', 'unit' => 'px', 'isLinked' => true ],
+			'mobile_default' => [ 'top' => '24', 'right' => '0', 'bottom' => '24', 'left' => '0', 'unit' => 'px', 'isLinked' => false ],
 			'selectors'  => [ '{{WRAPPER}} .bbsg-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
@@ -129,9 +135,20 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 			'tab'   => Controls_Manager::TAB_STYLE,
 		] );
 
+		// Applies to every stat except the last, so the default right (or, on
+		// phones, bottom) border reads as a divider between stats. With no
+		// color set, stats-grid.css uses a faint tint of the text color.
 		$this->add_group_control( Group_Control_Border::get_type(), [
-			'name'     => 'item_border',
-			'selector' => '{{WRAPPER}} .bbsg-item',
+			'name'           => 'item_border',
+			'selector'       => '{{WRAPPER}} .bbsg-item:not(:last-child)',
+			'fields_options' => [
+				'border' => [ 'default' => 'solid' ],
+				'width'  => [
+					'default'        => [ 'top' => '0', 'right' => '1', 'bottom' => '0', 'left' => '0', 'unit' => 'px', 'isLinked' => false ],
+					'tablet_default' => [ 'top' => '0', 'right' => '1', 'bottom' => '0', 'left' => '0', 'unit' => 'px', 'isLinked' => false ],
+					'mobile_default' => [ 'top' => '0', 'right' => '0', 'bottom' => '1', 'left' => '0', 'unit' => 'px', 'isLinked' => false ],
+				],
+			],
 		] );
 
 		$this->add_responsive_control( 'item_radius', [
@@ -187,8 +204,18 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 		] );
 
 		$this->add_group_control( Group_Control_Typography::get_type(), [
-			'name'     => 'number_typography',
-			'selector' => '{{WRAPPER}} .bbsg-value',
+			'name'           => 'number_typography',
+			'selector'       => '{{WRAPPER}} .bbsg-value',
+			'fields_options' => [
+				'typography'  => [ 'default' => 'custom' ],
+				'font_weight' => [ 'default' => '700' ],
+				'font_size'   => [
+					'default'        => [ 'unit' => 'px', 'size' => 56 ],
+					'tablet_default' => [ 'unit' => 'px', 'size' => 44 ],
+					'mobile_default' => [ 'unit' => 'px', 'size' => 40 ],
+				],
+				'line_height' => [ 'default' => [ 'unit' => 'em', 'size' => 1 ] ],
+			],
 		] );
 
 		$this->add_control( 'affix_heading', [
@@ -223,8 +250,15 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 		] );
 
 		$this->add_group_control( Group_Control_Typography::get_type(), [
-			'name'     => 'label_typography',
-			'selector' => '{{WRAPPER}} .bbsg-label',
+			'name'           => 'label_typography',
+			'selector'       => '{{WRAPPER}} .bbsg-label',
+			'fields_options' => [
+				'typography'     => [ 'default' => 'custom' ],
+				'font_size'      => [ 'default' => [ 'unit' => 'px', 'size' => 14 ] ],
+				'font_weight'    => [ 'default' => '500' ],
+				'text_transform' => [ 'default' => 'uppercase' ],
+				'letter_spacing' => [ 'default' => [ 'unit' => 'px', 'size' => 2 ] ],
+			],
 		] );
 
 		$this->add_responsive_control( 'label_spacing', [
@@ -232,6 +266,7 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 			'type'       => Controls_Manager::SLIDER,
 			'size_units' => [ 'px', 'em', 'rem' ],
 			'range'      => [ 'px' => [ 'min' => 0, 'max' => 100 ] ],
+			'default'    => [ 'unit' => 'px', 'size' => 12 ],
 			'selectors'  => [ '{{WRAPPER}} .bbsg-label' => 'margin-top: {{SIZE}}{{UNIT}};' ],
 		] );
 

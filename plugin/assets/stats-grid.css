@@ -1,16 +1,29 @@
+/* Full width by default; inside a row container a widget otherwise shrinks
+   to its content and the stats stack into one narrow column. Advanced >
+   Width in Elementor still overrides this. */
+.elementor-widget-bb-stats-grid {
+	width: 100%;
+}
+
 .bbsg-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 
+/* Divider color when none is picked: a faint tint of the text color, so it
+   suits light and dark backgrounds. */
 .bbsg-item {
 	min-width: 0;
+	border-color: rgba(128, 128, 128, 0.3);
+	border-color: color-mix(in srgb, currentColor 20%, transparent);
 }
 
 .bbsg-value {
 	line-height: 1;
 }
 
+/* Muted label when no color is picked. */
 .bbsg-label {
 	margin-top: 0.5em;
+	color: color-mix(in srgb, currentColor 70%, transparent);
 }

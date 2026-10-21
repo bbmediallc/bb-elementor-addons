@@ -2,6 +2,18 @@
 
 Each `## [version]` section becomes the release notes on GitHub.
 
+## [2.13.2] - 2026-10-21
+
+### Changed
+- Stats Grid looks finished out of the box, using the site's own font:
+  4 columns (1 on phones), thin dividers between stats (vertical, or
+  horizontal on phones), bold 56px numbers (44 tablet, 40 phone) and small
+  uppercase labels. All are normal Elementor settings you can change.
+
+### Fixed
+- Stats Grid shrank to a single narrow column inside row containers. It now
+  takes the full width unless Advanced > Width says otherwise.
+
 ## [2.13.1] - 2026-10-21
 
 ### Changed
