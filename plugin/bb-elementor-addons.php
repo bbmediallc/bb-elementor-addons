@@ -2,8 +2,8 @@
 /**
  * Plugin Name: B&B Media Elementor Add-Ons
  * Plugin URI: https://bandbmedia.com/
- * Description: Custom Elementor widgets by B&B Media: Hover Reveal List, Testimonial Slider, Section Intro, Gallery Slider, Logo Carousel, Photo Carousel, Team Grid, Product & Service Grid and Gravity Form.
- * Version: 2.12.3
+ * Description: Custom Elementor widgets by B&B Media: Hover Reveal List, Testimonial Slider, Section Intro, Gallery Slider, Logo Carousel, Photo Carousel, Team Grid, Product & Service Grid, Stats Grid and Gravity Form.
+ * Version: 2.13.0
  * Author: B&B Media, LLC
  * Author URI: https://bandbmedia.com/
  * Requires at least: 6.5
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Must match the Version header above. scripts/build.sh refuses to build
 // if they differ.
-define( 'BBEA_VERSION', '2.12.3' );
+define( 'BBEA_VERSION', '2.13.0' );
 define( 'BBEA_FILE', __FILE__ );
 define( 'BBEA_BASENAME', plugin_basename( __FILE__ ) );
 define( 'BBEA_URL', plugin_dir_url( __FILE__ ) );
@@ -73,6 +73,7 @@ add_action( 'elementor/frontend/after_register_styles', function () {
 	wp_register_style( 'bb-logo-carousel', BBEA_URL . 'assets/logo-carousel.css', [], BBEA_VERSION );
 	wp_register_style( 'bb-team-grid', BBEA_URL . 'assets/team-grid.css', [], BBEA_VERSION );
 	wp_register_style( 'bb-card-grid', BBEA_URL . 'assets/card-grid.css', [], BBEA_VERSION );
+	wp_register_style( 'bb-stats-grid', BBEA_URL . 'assets/stats-grid.css', [], BBEA_VERSION );
 } );
 
 add_action( 'elementor/frontend/after_register_scripts', function () {
@@ -91,6 +92,7 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	require_once BBEA_PATH . 'widgets/class-photo-carousel.php';
 	require_once BBEA_PATH . 'widgets/class-team-grid.php';
 	require_once BBEA_PATH . 'widgets/class-card-grid.php';
+	require_once BBEA_PATH . 'widgets/class-stats-grid.php';
 	require_once BBEA_PATH . 'widgets/class-gravity-form.php';
 	$widgets_manager->register( new \BBEA_Hover_Reveal_List_Widget() );
 	$widgets_manager->register( new \BBEA_Testimonial_Slider_Widget() );
@@ -100,5 +102,6 @@ add_action( 'elementor/widgets/register', function ( $widgets_manager ) {
 	$widgets_manager->register( new \BBEA_Photo_Carousel_Widget() );
 	$widgets_manager->register( new \BBEA_Team_Grid_Widget() );
 	$widgets_manager->register( new \BBEA_Card_Grid_Widget() );
+	$widgets_manager->register( new \BBEA_Stats_Grid_Widget() );
 	$widgets_manager->register( new \BBEA_Gravity_Form_Widget() );
 } );

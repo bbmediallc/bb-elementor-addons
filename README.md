@@ -2,7 +2,7 @@
 
 Custom Elementor widgets by B&B Media: Hover Reveal List, Testimonial Slider,
 Section Intro, Gallery Slider, Logo Carousel, Photo Carousel, Team Grid,
-Product & Service Grid and Gravity Form. Also adds a featured image column to
+Product & Service Grid, Stats Grid and Gravity Form. Also adds a featured image column to
 the Pages list and a background option to Elementor's Spacer.
 
 ## Folder layout
