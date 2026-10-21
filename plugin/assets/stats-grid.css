@@ -1,22 +1,10 @@
-/* Dividers: every stat has a left and top border, and the grid is pulled
-   up and left by the divider width inside a clipping box. That hides the
-   outer edge, so only lines between stats show, however they wrap. */
-
-.bbsg-clip {
-	overflow: hidden;
-}
-
 .bbsg-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-	margin-left: calc(-1 * var(--bbsg-col-divider, 0px));
-	margin-top: calc(-1 * var(--bbsg-row-divider, 0px));
 }
 
 .bbsg-item {
 	min-width: 0;
-	border-left: var(--bbsg-col-divider, 0px) solid var(--bbsg-divider-color, currentColor);
-	border-top: var(--bbsg-row-divider, 0px) solid var(--bbsg-divider-color, currentColor);
 }
 
 .bbsg-value {

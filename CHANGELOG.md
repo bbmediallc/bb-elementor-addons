@@ -2,13 +2,18 @@
 
 Each `## [version]` section becomes the release notes on GitHub.
 
+## [2.13.1] - 2026-10-21
+
+### Changed
+- Stats Grid: the custom divider settings are replaced by Elementor's
+  standard Border and Border Radius controls on each stat (Style > Stat).
+
 ## [2.13.0] - 2026-10-21
 
 ### Added
 - New Stats Grid widget: a repeater of stats, each with an optional prefix,
   a number, an optional suffix (e.g. `+` or `%`) and a label. Columns per
-  device, alignment, dividers between columns and rows, box background,
-  border and padding, and separate styling for the number, prefix/suffix
+  device, alignment, box background, border and padding, and separate styling for the number, prefix/suffix
   and label.
 
 ## [2.12.3] - 2026-10-21

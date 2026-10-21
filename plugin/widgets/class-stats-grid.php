@@ -122,33 +122,23 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 			'selectors'  => [ '{{WRAPPER}} .bbsg-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
-		$this->add_control( 'dividers_heading', [
-			'label'     => 'Dividers',
-			'type'      => Controls_Manager::HEADING,
-			'separator' => 'before',
+		$this->end_controls_section();
+
+		$this->start_controls_section( 'section_style_stat', [
+			'label' => 'Stat',
+			'tab'   => Controls_Manager::TAB_STYLE,
 		] );
 
-		$this->add_responsive_control( 'divider_width', [
-			'label'      => 'Between Columns',
-			'type'       => Controls_Manager::SLIDER,
-			'size_units' => [ 'px' ],
-			'range'      => [ 'px' => [ 'min' => 0, 'max' => 10 ] ],
-			'selectors'  => [ '{{WRAPPER}} .bbsg' => '--bbsg-col-divider: {{SIZE}}{{UNIT}};' ],
+		$this->add_group_control( Group_Control_Border::get_type(), [
+			'name'     => 'item_border',
+			'selector' => '{{WRAPPER}} .bbsg-item',
 		] );
 
-		$this->add_responsive_control( 'row_divider_width', [
-			'label'       => 'Between Rows',
-			'type'        => Controls_Manager::SLIDER,
-			'size_units'  => [ 'px' ],
-			'range'       => [ 'px' => [ 'min' => 0, 'max' => 10 ] ],
-			'description' => 'Shows when stats wrap onto more than one row.',
-			'selectors'   => [ '{{WRAPPER}} .bbsg' => '--bbsg-row-divider: {{SIZE}}{{UNIT}};' ],
-		] );
-
-		$this->add_control( 'divider_color', [
-			'label'     => 'Divider Color',
-			'type'      => Controls_Manager::COLOR,
-			'selectors' => [ '{{WRAPPER}} .bbsg' => '--bbsg-divider-color: {{VALUE}};' ],
+		$this->add_responsive_control( 'item_radius', [
+			'label'      => 'Border Radius',
+			'type'       => Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', '%', 'em' ],
+			'selectors'  => [ '{{WRAPPER}} .bbsg-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
 		$this->end_controls_section();
@@ -257,28 +247,26 @@ class BBEA_Stats_Grid_Widget extends Widget_Base {
 		}
 		?>
 		<div class="bbsg">
-			<div class="bbsg-clip">
-				<div class="bbsg-grid" role="list">
-					<?php foreach ( $stats as $stat ) : ?>
-						<?php
-						$prefix = isset( $stat['prefix'] ) ? trim( (string) $stat['prefix'] ) : '';
-						$number = isset( $stat['number'] ) ? trim( (string) $stat['number'] ) : '';
-						$suffix = isset( $stat['suffix'] ) ? trim( (string) $stat['suffix'] ) : '';
-						$label  = isset( $stat['label'] ) ? trim( (string) $stat['label'] ) : '';
-						if ( '' === $number && '' === $label ) {
-							continue;
-						}
-						?>
-						<div class="bbsg-item" role="listitem">
-							<?php if ( '' !== $prefix . $number . $suffix ) : ?>
-								<div class="bbsg-value"><?php if ( '' !== $prefix ) : ?><span class="bbsg-prefix"><?php echo esc_html( $prefix ); ?></span><?php endif; ?><span class="bbsg-number"><?php echo esc_html( $number ); ?></span><?php if ( '' !== $suffix ) : ?><span class="bbsg-suffix"><?php echo esc_html( $suffix ); ?></span><?php endif; ?></div>
-							<?php endif; ?>
-							<?php if ( '' !== $label ) : ?>
-								<div class="bbsg-label"><?php echo esc_html( $label ); ?></div>
-							<?php endif; ?>
-						</div>
-					<?php endforeach; ?>
-				</div>
+			<div class="bbsg-grid" role="list">
+				<?php foreach ( $stats as $stat ) : ?>
+					<?php
+					$prefix = isset( $stat['prefix'] ) ? trim( (string) $stat['prefix'] ) : '';
+					$number = isset( $stat['number'] ) ? trim( (string) $stat['number'] ) : '';
+					$suffix = isset( $stat['suffix'] ) ? trim( (string) $stat['suffix'] ) : '';
+					$label  = isset( $stat['label'] ) ? trim( (string) $stat['label'] ) : '';
+					if ( '' === $number && '' === $label ) {
+						continue;
+					}
+					?>
+					<div class="bbsg-item" role="listitem">
+						<?php if ( '' !== $prefix . $number . $suffix ) : ?>
+							<div class="bbsg-value"><?php if ( '' !== $prefix ) : ?><span class="bbsg-prefix"><?php echo esc_html( $prefix ); ?></span><?php endif; ?><span class="bbsg-number"><?php echo esc_html( $number ); ?></span><?php if ( '' !== $suffix ) : ?><span class="bbsg-suffix"><?php echo esc_html( $suffix ); ?></span><?php endif; ?></div>
+						<?php endif; ?>
+						<?php if ( '' !== $label ) : ?>
+							<div class="bbsg-label"><?php echo esc_html( $label ); ?></div>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 		<?php
