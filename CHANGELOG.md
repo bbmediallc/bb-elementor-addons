@@ -2,6 +2,13 @@
 
 Each `## [version]` section becomes the release notes on GitHub.
 
+## [2.12.3] - 2026-10-21
+
+### Added
+- Section Intro: highlight chosen heading words. Enter word numbers in
+  Content > Highlight Words (e.g. `2,3,4` or `2-4`) and pick Style > Heading >
+  Highlight/Accent Color. Both start empty, so existing headings don't change.
+
 ## [2.12.2] - 2026-10-21
 
 ### Added

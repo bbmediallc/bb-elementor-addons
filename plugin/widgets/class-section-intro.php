@@ -89,6 +89,13 @@ class BBEA_Section_Intro_Widget extends Widget_Base {
 			'separator' => 'before',
 		] );
 
+		$this->add_control( 'heading_highlight', [
+			'label'       => 'Highlight Words',
+			'type'        => Controls_Manager::TEXT,
+			'placeholder' => 'e.g. 2,3,4 or 2-4',
+			'description' => 'Word numbers to show in the Highlight/Accent Color (Style > Heading), counting from 1 across the whole heading.',
+		] );
+
 		$this->add_control( 'heading_tag', [
 			'label'   => 'Heading HTML Tag',
 			'type'    => Controls_Manager::SELECT,
@@ -398,6 +405,12 @@ class BBEA_Section_Intro_Widget extends Widget_Base {
 			'selectors' => [ '{{WRAPPER}} .bbsi-heading' => 'color: {{VALUE}};' ],
 		] );
 
+		$this->add_control( 'heading_highlight_color', [
+			'label'     => 'Highlight/Accent Color',
+			'type'      => Controls_Manager::COLOR,
+			'selectors' => [ '{{WRAPPER}} .bbsi-heading .bbsi-highlight' => 'color: {{VALUE}};' ],
+		] );
+
 		$this->add_group_control( Group_Control_Typography::get_type(), [
 			'name'     => 'heading_typography',
 			'selector' => '{{WRAPPER}} .bbsi-heading',
@@ -564,7 +577,7 @@ class BBEA_Section_Intro_Widget extends Widget_Base {
 			<?php endif; ?>
 
 			<?php if ( '' !== trim( (string) $s['heading'] ) ) : ?>
-				<<?php echo $heading_tag; ?> class="bbsi-heading"><?php echo wp_kses_post( nl2br( $s['heading'] ) ); ?></<?php echo $heading_tag; ?>>
+				<<?php echo $heading_tag; ?> class="bbsi-heading"><?php echo nl2br( $this->highlight_words( wp_kses_post( $s['heading'] ), isset( $s['heading_highlight'] ) ? $s['heading_highlight'] : '' ) ); ?></<?php echo $heading_tag; ?>>
 			<?php endif; ?>
 
 			<?php if ( '' !== trim( wp_strip_all_tags( (string) $s['text'] ) ) ) : ?>
@@ -601,5 +614,48 @@ class BBEA_Section_Intro_Widget extends Widget_Base {
 			<?php endif; ?>
 		</div>
 		<?php
+	}
+
+	// Wraps the chosen words (1-based) in <span class="bbsi-highlight">.
+	// Only text between HTML tags is counted and changed, so links or
+	// formatting inside the heading stay intact.
+	private function highlight_words( $html, $spec ) {
+		$wanted = $this->parse_word_numbers( $spec );
+		if ( ! $wanted ) {
+			return $html;
+		}
+		$parts = preg_split( '/(<[^>]*>)/', $html, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$count = 0;
+		foreach ( $parts as $i => $part ) {
+			if ( '' === $part || '<' === $part[0] ) {
+				continue;
+			}
+			$replaced = preg_replace_callback( '/\S+/u', function ( $m ) use ( &$count, $wanted ) {
+				$count++;
+				return isset( $wanted[ $count ] ) ? '<span class="bbsi-highlight">' . $m[0] . '</span>' : $m[0];
+			}, $part );
+			// null on invalid UTF-8: keep the text as it was.
+			if ( null !== $replaced ) {
+				$parts[ $i ] = $replaced;
+			}
+		}
+		return implode( '', $parts );
+	}
+
+	// "2,3,4", "2-4" or "2-4, 7" => [ 2 => true, 3 => true, 4 => true, ... ].
+	private function parse_word_numbers( $spec ) {
+		$spec   = preg_replace( '/\s*-\s*/', '-', (string) $spec );
+		$wanted = [];
+		foreach ( preg_split( '/[\s,]+/', $spec, -1, PREG_SPLIT_NO_EMPTY ) as $token ) {
+			if ( preg_match( '/^(\d+)-(\d+)$/', $token, $m ) ) {
+				$last = min( (int) $m[2], (int) $m[1] + 200 );
+				for ( $n = (int) $m[1]; $n <= $last; $n++ ) {
+					$wanted[ $n ] = true;
+				}
+			} elseif ( ctype_digit( $token ) ) {
+				$wanted[ (int) $token ] = true;
+			}
+		}
+		return $wanted;
 	}
 }
