@@ -22,6 +22,7 @@
 }
 
 .bbsi .bbsi-eyebrow-text {
+	display: inline-block;
 	margin: 0;
 	padding: 0;
 	color: inherit;

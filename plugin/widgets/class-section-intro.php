@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Elementor\Controls_Manager;
+use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Utils;
@@ -292,6 +293,28 @@ class BBEA_Section_Intro_Widget extends Widget_Base {
 		$this->add_group_control( Group_Control_Typography::get_type(), [
 			'name'     => 'eyebrow_typography',
 			'selector' => '{{WRAPPER}} .bbsi-eyebrow-text',
+		] );
+
+		// Border around the eyebrow text (it shrinks to fit, see section-intro.css).
+		// ".bbsi" in the selectors outranks the stylesheet's padding: 0.
+		$this->add_group_control( Group_Control_Border::get_type(), [
+			'name'      => 'eyebrow_border',
+			'selector'  => '{{WRAPPER}} .bbsi .bbsi-eyebrow-text',
+			'separator' => 'before',
+		] );
+
+		$this->add_responsive_control( 'eyebrow_radius', [
+			'label'      => 'Border Radius',
+			'type'       => Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', '%', 'em' ],
+			'selectors'  => [ '{{WRAPPER}} .bbsi .bbsi-eyebrow-text' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
+		] );
+
+		$this->add_responsive_control( 'eyebrow_padding', [
+			'label'      => 'Padding',
+			'type'       => Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'px', 'em', 'rem' ],
+			'selectors'  => [ '{{WRAPPER}} .bbsi .bbsi-eyebrow-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
 		$this->add_control( 'eyebrow_dot', [

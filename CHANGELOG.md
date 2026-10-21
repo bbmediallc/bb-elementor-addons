@@ -2,6 +2,13 @@
 
 Each `## [version]` section becomes the release notes on GitHub.
 
+## [2.12.2] - 2026-10-21
+
+### Added
+- Section Intro: Style > Eyebrow now has Border, Border Radius and Padding.
+  The eyebrow text shrinks to fit its words, so the border wraps the text
+  rather than the full width.
+
 ## [2.12.1] - 2026-10-20
 
 ### Added
